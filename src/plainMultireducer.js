@@ -1,5 +1,5 @@
 import mapValues from './mapValues';
-import key from './key';
+import key, { KEY_ALL } from './key';
 import initAction from './initAction';
 
 export default function plainMultireducer(reducers, reducerKey) {
@@ -21,7 +21,7 @@ export default function plainMultireducer(reducers, reducerKey) {
       const actionReducerKey = action.meta[key];
 
       // custom mount point
-      if (isCustomMountPoint && reducerKey === actionReducerKey) {
+      if (isCustomMountPoint && (reducerKey === actionReducerKey || KEY_ALL === actionReducerKey)) {
         return reducers(state, action);
       }
 
