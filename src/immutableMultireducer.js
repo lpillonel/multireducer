@@ -1,8 +1,8 @@
 import Immutable from 'immutable';
-import key, { KEY_ALL } from './key';
+import { key, KEY_ALL } from './key';
 import initAction from './initAction';
 
-export default function plainMultireducer(reducers, reducerKey) {
+export default function immutableMultireducer(reducers, reducerKey) {
   let isCustomMountPoint;
   if (typeof reducers === 'function') {
     if (!reducerKey) {
@@ -22,8 +22,19 @@ export default function plainMultireducer(reducers, reducerKey) {
 
       // custom mount point
       if (isCustomMountPoint && (reducerKey === actionReducerKey || KEY_ALL === actionReducerKey)) {
+        if (KEY_ALL === actionReducerKey) {
+          return reducers(state, {
+            ...action,
+            meta: {
+              ...action.meta,
+              [key]: reducerKey,
+              [KEY_ALL]: true,
+            }
+          });
+        }
         return reducers(state, action);
       }
+
 
       // usual multireducer mounting
       const reducer = reducers[actionReducerKey];

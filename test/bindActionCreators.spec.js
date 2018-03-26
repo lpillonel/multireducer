@@ -1,6 +1,6 @@
 import expect from 'expect';
 import bindActionCreators from '../src/bindActionCreators';
-import key from '../src/key';
+import { key } from '../src/key';
 
 const testBoundAction = (action, boundAction, reducerKey) => {
   const result = action();

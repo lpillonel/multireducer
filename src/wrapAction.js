@@ -1,4 +1,4 @@
-import key from './key';
+import { key } from './key';
 
 export default function wrapAction(action, reducerKey) {
   return {

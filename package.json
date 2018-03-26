@@ -1,5 +1,5 @@
 {
-  "name": "lpi-multireducer",
+  "name": "@lpi/multireducer",
   "version": "3.2.3",
   "description": "A utility to wrap many copies of a single Redux reducer into a single key-based reducer.",
   "main": "./lib/index.js",
